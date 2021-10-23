@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>HTML5 Page</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <h1>Weather</h1>
+
+    <input placeholder="City" type="text" />
+    <button>Fetch</button>
+    <div></div>
+    <script>
+        document.querySelector("button").addEventListener("click", async () => {
+            const cityName = document.querySelector("input").value
+            const url = `/q=${cityName}`
+            let response = await axios.get(url)
+            document.querySelector("div").innerHTML = "It is " + Math.round(response.data.main.temp - 273) + " C in " + cityName
+        })
+    </script>
+</body>
+
+</html>
