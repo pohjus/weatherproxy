@@ -15,6 +15,6 @@ app.get("/q=:city([a-z]*)", async (req, res) => {
   res.send(response.data);
 });
 
-const server = app.listen(port, "localhost", () => {
+const server = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
