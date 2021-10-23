@@ -2,15 +2,10 @@ const express = require("express");
 const app = express();
 const axios = require("axios");
 const port = process.env.PORT || 8080;
-const ipfilter = require("express-ipfilter").IpFilter;
-
-const ips = ["127.0.0.1"];
 
 require("dotenv").config();
 
 app.use(express.static("public"));
-
-app.use(ipfilter(ips, { mode: "allow" }));
 
 app.get("/q=:city([a-z]*)", async (req, res) => {
   const API_KEY = process.env.API_KEY;
@@ -20,6 +15,6 @@ app.get("/q=:city([a-z]*)", async (req, res) => {
   res.send(response.data);
 });
 
-const server = app.listen(port, () => {
+const server = app.listen(port, "localhost", () => {
   console.log(`Listening on port ${port}`);
 });
