@@ -9,7 +9,7 @@ app.use(express.static("public"));
 
 const checkdomain = (req, res, next) => {
   console.log(req.get("host"));
-  if (req.get("host") == "https://myweatherproxy.herokuapp.com") {
+  if (req.get("host") == "myweatherproxy.herokuapp.com") {
     next();
   }
 };
