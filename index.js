@@ -7,7 +7,13 @@ require("dotenv").config();
 
 app.use(express.static("public"));
 
-app.get("/q=:city([a-z]*)", async (req, res) => {
+const checkdomain = (req, res, next) => {
+  if (req.get("host") == "https://myweatherproxy.herokuapp.com") {
+    next();
+  }
+};
+
+app.get("/q=:city([a-z]*)", checkdomain, async (req, res) => {
   const API_KEY = process.env.API_KEY;
   const cityName = req.params.city;
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`;
