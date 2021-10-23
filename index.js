@@ -2,10 +2,15 @@ const express = require("express");
 const app = express();
 const axios = require("axios");
 const port = process.env.PORT || 8080;
+const ipfilter = require("express-ipfilter").IpFilter;
+
+const ips = ["127.0.0.1"];
 
 require("dotenv").config();
 
 app.use(express.static("public"));
+
+app.use(ipfilter(ips));
 
 app.get("/q=:city([a-z]*)", async (req, res) => {
   const API_KEY = process.env.API_KEY;
