@@ -8,6 +8,7 @@ require("dotenv").config();
 app.use(express.static("public"));
 
 const checkdomain = (req, res, next) => {
+  console.log(req.get("host"));
   if (req.get("host") == "https://myweatherproxy.herokuapp.com") {
     next();
   }
