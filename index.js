@@ -10,6 +10,11 @@ app.use(express.static("public"));
 const checkdomain = (req, res, next) => {
   console.log(req.get("host"));
   console.log(req.get("origin"));
+  console.log(req.connection.remoteAddress);
+  console.log(req.connection.remotePort);
+  console.log(req.connection.localAddress);
+  console.log(req.connection.localPort);
+
   if (req.get("host") == "myweatherproxy.herokuapp.com") {
     next();
   }
