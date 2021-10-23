@@ -10,7 +10,7 @@ require("dotenv").config();
 
 app.use(express.static("public"));
 
-app.use(ipfilter(ips));
+app.use(ipfilter(ips, { mode: "allow" }));
 
 app.get("/q=:city([a-z]*)", async (req, res) => {
   const API_KEY = process.env.API_KEY;
